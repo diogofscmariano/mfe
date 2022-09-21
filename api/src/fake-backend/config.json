@@ -1,0 +1,36 @@
+{
+  "apps": [
+    {
+      "id": "planets",
+      "baseUrl": "http://localhost:9002",
+      "bundleName": "react-mf-planets.js"
+    },
+    {
+      "id": "people",
+      "baseUrl": "https://react.microfrontends.app/people/4d0af0a673764fa9b311f9f98163c88be9af9426",
+      "bundleName": "react-mf-people.js"
+    },
+    {
+      "id": "angular",
+      "baseUrl": "http://localhost:4200",
+      "bundleName": "main.js"
+    }
+  ],
+  "menu": [
+    {
+      "id": "planets",
+      "label": "Planets",
+      "href": "/planets"
+    },
+    {
+      "id": "people",
+      "label": "People",
+      "href": "/people"
+    },
+    {
+      "id": "angular",
+      "label": "Angular",
+      "href": "/angular"
+    }
+  ]
+}

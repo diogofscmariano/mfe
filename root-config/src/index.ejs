@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>React Microfrontends</title>
+    <meta name="importmap-type" content="systemjs-importmap" />
+    <script
+      type="systemjs-importmap"
+      src="https://storage.googleapis.com/react.microfrontends.app/importmap.json"
+    ></script>
+    <% if (isLocal) { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "@react-mf/root-config": "//localhost:9000/react-mf-root-config.js",
+          "@react-mf/navbar": "//localhost:9001/react-mf-navbar.js",
+          "@react-mf/planets": "//localhost:9002/react-mf-planets.js",
+          "@react-mf/api": "//localhost:9003/react-mf-api.js"
+        }
+      }
+    </script>
+    <% } %>
+    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+    <template id="single-spa-layout">
+      <single-spa-router>
+        <div class="main-content mt-16">
+          <route path="login">
+            <application name="@react-mf/login"></application>
+          </route>
+          <route path="/">
+            <nav class="topnav">
+              <application
+                name="@react-mf/navbar"
+                loader="topNav"
+                error="topNav"
+              ></application>
+            </nav>
+            <main></main>
+          </route>
+        </div>
+      </single-spa-router>
+    </template>
+  </head>
+  <body>
+    <script>
+      System.import("@react-mf/root-config");
+    </script>
+    <import-map-overrides-full
+      show-when-local-storage="devtools"
+      dev-libs
+    ></import-map-overrides-full>
+  </body>
+</html>
